@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8"/>
+    <title>Avia-board-app</title>
+    <link rel="stylesheet" type="text/css" href="./css/styles.css"/>
+    <script src="./js/lib.js"></script>
+  </head>
+  <body>
+    <div class="mt-2 container">
+      <header class="bg-light header">
+        <h1 class="m-0 px-2 py-3 text-light text-center bg-dark rounded-top title">Онлайн табло</h1>
+        <nav class="py-2 px-5 navbar navbar-dark bg-light justify-content-center avia-nav">
+          <ul class="nav nav-pills avia-nav__list">
+            <li class="nav-item avia-nav__item"><a class="nav-link avia-nav__link active" href="#">Вылет</a>
+            </li>
+            <li class="nav-item avia-nav__item"><a class="nav-link avia-nav__link" href="#">Прилет</a>
+            </li>
+            <li class="nav-item avia-nav__item"><a class="nav-link avia-nav__link" href="#">Задержка</a>
+            </li>
+          </ul>
+          <form class="form-inline ml-5 my-2 my-lg-0 search-bar">
+            <input class="form-control mr-sm-2 search-bar__inp" type="search" placeholder="Номер рейса" aria-label="Search"/>
+            <button class="btn btn-outline-primary my-2 my-sm-0 search-bar__submit" type="submit">Поиск</button>
+          </form>
+        </nav>
+      </header>
+    </div>
+    <script src="./js/scripts.js"> </script>
+  </body>
+</html>

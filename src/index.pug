@@ -1,6 +1,29 @@
+include container/container
+include content/content
+include header/header
+include title/title
+include avia-nav/avia-nav
+include search-bar/search-bar
+include avia-board/avia-board
+
+-
+    var navTabs = {
+        tab1: { name: 'Вылет', active: true },
+        tab2: { name: 'Прилет' },
+        tab3: { name: 'Задержка' }
+    };
+
 <!DOCTYPE html>
-html(lang="en")
+html(lang="ru")
     head
         meta(charset="UTF-8")
         title Avia-board-app
+        link(rel="stylesheet", type="text/css", href=`./css/styles${devMode ? '' : '.min'}.css`)
+        script(src='./js/lib.js')
     body
+        +container
+            +header
+                +title('Онлайн табло')
+                +avia-nav(navTabs)
+                    +search-bar
+        script(src=`./js/scripts${devMode ? '' : '.min'}.js`) 

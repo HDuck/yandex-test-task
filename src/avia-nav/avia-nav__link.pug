@@ -1,0 +1,5 @@
+mixin avia-nav__link(name, active)
+    if (active)
+        a(class="nav-link avia-nav__link active", href="#")= name
+    else
+        a(class="nav-link avia-nav__link", href="#")= name

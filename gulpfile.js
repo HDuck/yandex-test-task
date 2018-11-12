@@ -15,7 +15,7 @@ const srcDest = './src';
 const devDest = './dist';
 const prodDest = './docs';
 const devBuild = ['pug', 'scss', 'concat:js', 'jsLibs'];
-const prodBuild = ['pug', 'scss', 'minify-css', 'concat:js', 'jsLibs' 'minify-js'];
+const prodBuild = ['pug', 'scss', 'minify-css', 'concat:js', 'jsLibs', 'minify-js'];
 
 gulp.task('serverSync', ['build'], () => {
     browSync.init({
@@ -33,12 +33,13 @@ gulp.task('scss', ['cleanCss'], () => {
     return gulp.src(`${srcDest}/index.scss`)
         .pipe(scss().on('error', scss.logError))
         .pipe(autoprefixer())
-        .pipe(gulp.dest(gulp.dest(`${devMode ? devDest : srcDest}/css`)))
+        .pipe(rename({ basename: 'styles' }))
+        .pipe(gulp.dest(`${devMode ? devDest : srcDest}/css`))
         .pipe(browSync.stream());
 });
 
 gulp.task('pug', ['cleanHtml'], () => {
-    gulp.src(`${srcDest}/main.pug`)
+    gulp.src(`${srcDest}/index.pug`)
         .pipe(pug({ 
             pretty: devMode ? true : false,
             locals: { devMode: devMode }
@@ -53,7 +54,7 @@ gulp.task('jsLibs', () => {
         `~popper.js/dist/popper.min.js`
     ])
     .pipe(concat('lib.js'))
-    .pipe(gulp.dest(`${devMode ? devDest : srcDest}/js`))
+    .pipe(gulp.dest(`${devMode ? devDest : prodDest}/js`))
 });
 
 gulp.task('concat:js', ['cleanJs'], () => {

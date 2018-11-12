@@ -1,0 +1,11 @@
+include avia-nav__list
+include avia-nav__item
+include avia-nav__link
+
+mixin avia-nav(navItems)
+    nav(class="py-2 px-5 navbar navbar-dark bg-light justify-content-center avia-nav")
+        +avia-nav__list
+            each tab in navItems
+                +avia-nav__item
+                    +avia-nav__link(tab.name, tab.active)
+        block
