@@ -7,7 +7,7 @@
     <script src="./js/lib.js"></script>
   </head>
   <body>
-    <div class="mt-2 container">
+    <div class="mt-2 container wrapper">
       <header class="bg-light header">
         <h1 class="m-0 px-2 py-3 text-light text-center bg-dark rounded-top title">Онлайн табло</h1>
         <nav class="py-2 px-5 navbar navbar-dark bg-light justify-content-center avia-nav">
@@ -25,6 +25,28 @@
           </form>
         </nav>
       </header>
+      <main class="content">
+        <div class="mt-3 container avia-board">
+          <div class="row py-2 border-top border-bottom border-secondary avia-board__header"><span class="col-1 text-dark font-weight-bold time">Время</span><span class="col-4 text-dark font-weight-bold town">Город</span><span class="col-2 text-dark font-weight-bold flight-num">Номер рейса</span><span class="col-1 text-dark font-weight-bold terminal">Терминал</span><span class="col-4 text-dark font-weight-bold status">Статус</span></div>
+          <div class="row py-2 border-bottom avia-board__row"><span class="col-1 time">20:00</span><span class="col-4 city">Москва</span>
+            <div class="col-2 flight-nums">
+              <p class="m-0 num">FV 6289</p>
+              <p class="m-0 num">SU 6289</p>
+            </div><span class="col-1 terminal">D</span><span class="col-4 status">В полете</span>
+          </div>
+          <div class="row py-2 border-bottom avia-board__row"><span class="col-1 time">20:15</span><span class="col-4 city">Сочи</span>
+            <div class="col-2 flight-nums">
+              <p class="m-0 num">SU 6289</p>
+            </div><span class="col-1 terminal">E</span><span class="col-4 status">Посадка закончена</span>
+          </div>
+          <div class="row py-2 border-bottom avia-board__row"><span class="col-1 time">20:30</span><span class="col-4 city">Екатеринбург</span>
+            <div class="col-2 flight-nums">
+              <p class="m-0 num">FV 6289</p>
+              <p class="m-0 num">SU 6289</p>
+            </div><span class="col-1 terminal">A</span><span class="col-4 status">Совершил посадку в 00:06</span>
+          </div>
+        </div>
+      </main>
     </div>
     <script src="./js/scripts.js"> </script>
   </body>

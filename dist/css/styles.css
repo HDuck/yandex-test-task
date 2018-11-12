@@ -7746,3 +7746,17 @@ template {
 
 [hidden] {
   display: none !important; }
+
+.avia-board__row {
+  transition: background-color .3s ease 0s; }
+  .avia-board__row:nth-child(even) {
+    background-color: #e9ecef; }
+  .avia-board__row:hover {
+    background-color: #007bff; }
+    .avia-board__row:hover > .time,
+    .avia-board__row:hover > .city,
+    .avia-board__row:hover > .terminal,
+    .avia-board__row:hover > .status,
+    .avia-board__row:hover > .flight-nums > .num {
+      color: white;
+      transition: color .3s ease 0s; }

@@ -1,0 +1,20 @@
+.avia-board__row {
+    transition: background-color .3s ease 0s;
+
+    &:nth-child(even) {
+        background-color: #e9ecef;
+    }
+
+    &:hover {
+        background-color: #007bff;
+
+        & > .time,
+        & > .city,
+        & > .terminal,
+        & > .status,
+        & > .flight-nums > .num {
+            color: white;
+            transition: color .3s ease 0s;
+        }
+    }
+}

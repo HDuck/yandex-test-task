@@ -1,4 +1,4 @@
-include container/container
+include wrapper/wrapper
 include content/content
 include header/header
 include title/title
@@ -13,6 +13,30 @@ include avia-board/avia-board
         tab3: { name: 'Задержка' }
     };
 
+    var flightData = {
+        flight1: {
+            time: '20:00',
+            city: 'Москва',
+            number: ['FV 6289', 'SU 6289'],
+            terminal: 'D',
+            status: 'В полете'
+        },
+        flight2: {
+            time: '20:15',
+            city: 'Сочи',
+            number: 'SU 6289',
+            terminal: 'E',
+            status: 'Посадка закончена'
+        },
+        flight3: {
+            time: '20:30',
+            city: 'Екатеринбург',
+            number: ['FV 6289', 'SU 6289'],
+            terminal: 'A',
+            status: 'Совершил посадку в 00:06'
+        },
+    }
+
 <!DOCTYPE html>
 html(lang="ru")
     head
@@ -21,9 +45,11 @@ html(lang="ru")
         link(rel="stylesheet", type="text/css", href=`./css/styles${devMode ? '' : '.min'}.css`)
         script(src='./js/lib.js')
     body
-        +container
+        +wrapper
             +header
                 +title('Онлайн табло')
                 +avia-nav(navTabs)
                     +search-bar
+            +content
+                +avia-board(flightData)
         script(src=`./js/scripts${devMode ? '' : '.min'}.js`) 

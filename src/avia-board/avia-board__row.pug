@@ -1,0 +1,12 @@
+mixin avia-board__row(data)
+    div(class="row py-2 border-bottom avia-board__row")
+        span(class="col-1 time")= data.time
+        span(class="col-4 city")= data.city
+        div(class="col-2 flight-nums")
+            if (typeof data.number === 'object')
+                each item in data.number
+                    p(class="m-0 num")= item
+            else
+                p(class="m-0 num")= data.number
+        span(class="col-1 terminal")= data.terminal
+        span(class="col-4 status")= data.status
