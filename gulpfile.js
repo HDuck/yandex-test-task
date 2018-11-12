@@ -14,8 +14,8 @@ const devMode = argv.env !== 'production';
 const srcDest = './src';
 const devDest = './dist';
 const prodDest = './docs';
-const devBuild = ['pug', 'scss', 'concat:js'];
-const prodBuild = ['pug', 'scss', 'minify-css', 'concat:js', 'minify-js'];
+const devBuild = ['pug', 'scss', 'concat:js', 'jsLibs'];
+const prodBuild = ['pug', 'scss', 'minify-css', 'concat:js', 'jsLibs' 'minify-js'];
 
 gulp.task('serverSync', ['build'], () => {
     browSync.init({
@@ -47,6 +47,15 @@ gulp.task('pug', ['cleanHtml'], () => {
         .pipe(browSync.stream());
 });
 
+gulp.task('jsLibs', () => {
+    gulp.src([
+        `~jquery/dist/jquery.min.js`,
+        `~popper.js/dist/popper.min.js`
+    ])
+    .pipe(concat('lib.js'))
+    .pipe(gulp.dest(`${devMode ? devDest : srcDest}/js`))
+});
+
 gulp.task('concat:js', ['cleanJs'], () => {
     gulp.src([
             `${srcDest}/**/*.js`,
@@ -75,7 +84,7 @@ gulp.task('cleanCss', () => {
 });
 
 gulp.task('cleanJs', () => {
-    return gulp.src(`${devMode ? devDest : prodDest}/js`)
+    return gulp.src(`${devMode ? devDest : prodDest}/js/scripts${devMode ? '.js' : '.min.js'}`)
         .pipe(clean());
 });
 
