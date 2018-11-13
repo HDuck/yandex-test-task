@@ -50,17 +50,16 @@ gulp.task('pug', ['cleanHtml'], () => {
 
 gulp.task('jsLibs', () => {
     gulp.src([
-        `~jquery/dist/jquery.min.js`,
-        `~popper.js/dist/popper.min.js`
+        `./node_modules/jquery/dist/jquery.min.js`,
+        `./node_modules/popper.js/dist/popper.min.js`
     ])
-    .pipe(concat('lib.js'))
-    .pipe(gulp.dest(`${devMode ? devDest : prodDest}/js`))
+        .pipe(gulp.dest(`${devMode ? devDest : prodDest}/libs`))
 });
 
 gulp.task('concat:js', ['cleanJs'], () => {
     gulp.src([
-            `${srcDest}/**/*.js`,
-            `${srcDest}/**/*/*.js`
+            `${srcDest}/index.js`,
+            `${srcDest}/*/*.js`
         ])
         .pipe(concat('scripts.js'))
         .pipe(gulp.dest(`${devMode ? devDest : srcDest}/js`))

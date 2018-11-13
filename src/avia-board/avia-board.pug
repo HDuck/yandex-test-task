@@ -4,5 +4,7 @@ include avia-board__row
 mixin avia-board(flightData)
     div(class="mt-3 container avia-board")
         +avia-board__header
-        each dataItem in flightData
-            +avia-board__row(dataItem)
+        if (flightData)
+            each dataItem in flightData
+                +avia-board__row(dataItem)
+        

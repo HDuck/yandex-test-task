@@ -8,34 +8,10 @@ include avia-board/avia-board
 
 -
     var navTabs = {
-        tab1: { name: 'Вылет', active: true },
-        tab2: { name: 'Прилет' },
+        tab1: { name: 'Прилет', active: true },
+        tab2: { name: 'Вылет' },
         tab3: { name: 'Задержка' }
     };
-
-    var flightData = {
-        flight1: {
-            time: '20:00',
-            city: 'Москва',
-            number: ['FV 6289', 'SU 6289'],
-            terminal: 'D',
-            status: 'В полете'
-        },
-        flight2: {
-            time: '20:15',
-            city: 'Сочи',
-            number: 'SU 6289',
-            terminal: 'E',
-            status: 'Посадка закончена'
-        },
-        flight3: {
-            time: '20:30',
-            city: 'Екатеринбург',
-            number: ['FV 6289', 'SU 6289'],
-            terminal: 'A',
-            status: 'Совершил посадку в 00:06'
-        },
-    }
 
 <!DOCTYPE html>
 html(lang="ru")
@@ -43,7 +19,8 @@ html(lang="ru")
         meta(charset="UTF-8")
         title Avia-board-app
         link(rel="stylesheet", type="text/css", href=`./css/styles${devMode ? '' : '.min'}.css`)
-        script(src='./js/lib.js')
+        script(src='./libs/jquery.min.js')
+        //- script(src='./libs/popper.min.js')
     body
         +wrapper
             +header
@@ -51,5 +28,5 @@ html(lang="ru")
                 +avia-nav(navTabs)
                     +search-bar
             +content
-                +avia-board(flightData)
+                +avia-board()
         script(src=`./js/scripts${devMode ? '' : '.min'}.js`) 
