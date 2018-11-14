@@ -8,9 +8,9 @@ include avia-board/avia-board
 
 -
     var navTabs = {
-        tab1: { name: 'Прилет', active: true },
-        tab2: { name: 'Вылет' },
-        tab3: { name: 'Задержка' }
+        tab1: { name: 'Прилет', link: 'arrival', active: true },
+        tab2: { name: 'Вылет', link: 'departure' },
+        tab3: { name: 'Задержка', link: 'delayed' }
     };
 
 <!DOCTYPE html>
@@ -20,7 +20,8 @@ html(lang="ru")
         title Avia-board-app
         link(rel="stylesheet", type="text/css", href=`./css/styles${devMode ? '' : '.min'}.css`)
         script(src='./libs/jquery.min.js')
-        //- script(src='./libs/popper.min.js')
+        script(src='./libs/popper.min.js')
+        script(src='./libs/bootstrap.min.js')
     body
         +wrapper
             +header
@@ -28,5 +29,5 @@ html(lang="ru")
                 +avia-nav(navTabs)
                     +search-bar
             +content
-                +avia-board()
+                +avia-board(navTabs)
         script(src=`./js/scripts${devMode ? '' : '.min'}.js`) 

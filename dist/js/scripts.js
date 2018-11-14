@@ -58,7 +58,7 @@
     let today = getCurrDate();
     let direction = 'arr';
     let flightsApi = `https://api.flightstats.com/flex/flightstatus/rest/v2/jsonp/airport/status/${AIRPORT_CODE}/${direction}/${today}?appId=${APP_ID}&appKey=${APP_KEY}&utc=false&numHours=2`;
-    
+
     let flightData;
 
     $.ajax({
@@ -77,11 +77,11 @@
     })
     .done(() => {
         let flights = getData(flightData, direction);
-        renderTable(flights)
+        renderTable(flights, direction);
     })
     .fail(() => {
         let flights = getData(flightData, direction);
-        renderTable(flights);
+        renderTable(flights, direction);
     });
 
     // Создание массива с необходимыми данными
@@ -185,8 +185,16 @@
         return flightsArr;
     };
 
-    function renderTable(dataArr) {
-        let table = document.querySelector(`.${TABLE_CLASS}`);
+    // Отрисовка таблицы с данными рейсов
+
+    function renderTable(dataArr, direction) {
+        let selector = direction === 'arr'
+            ? `.${TABLE_CLASS} #arrival`
+            : direction === 'dep'
+                ? `.${TABLE_CLASS} #departure`
+                : `.${TABLE_CLASS} #delayed`;
+
+        let tableCont = document.querySelector(selector);
 
         dataArr.forEach((item) => {
             let row = new TableRow(
@@ -198,9 +206,11 @@
                 item.status
             );
             
-            table.appendChild(row.render());
+            tableCont.appendChild(row.render());
         });
     }
+
+    // Текущая дата для запроса на API
 
     function getCurrDate() {
         let date = new Date();

@@ -7,5 +7,5 @@ mixin avia-nav(navItems)
         +avia-nav__list
             each tab in navItems
                 +avia-nav__item
-                    +avia-nav__link(tab.name, tab.active)
+                    +avia-nav__link(tab.name, tab.link, tab.active)
         block

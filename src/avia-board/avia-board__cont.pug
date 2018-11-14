@@ -1,0 +1,9 @@
+mixin avia-board__cont(navObj)
+    div(class="tab-content avia-board__cont", id="pills-tabContent")
+        each tab in navObj
+            if (tab.active)
+                div(class="tab-pane fade show active" id=tab.link role="tabpanel" aria-labelledby=`${tab.link}-tab`)
+                    block
+            else
+                div(class="tab-pane fade" id=tab.link role="tabpanel" aria-labelledby=`${tab.link}-tab`)
+            

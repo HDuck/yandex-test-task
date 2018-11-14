@@ -51,7 +51,8 @@ gulp.task('pug', ['cleanHtml'], () => {
 gulp.task('jsLibs', () => {
     gulp.src([
         `./node_modules/jquery/dist/jquery.min.js`,
-        `./node_modules/popper.js/dist/popper.min.js`
+        `./node_modules/popper.js/dist/popper.min.js`,
+        `./node_modules/bootstrap/dist/js/bootstrap.min.js`
     ])
         .pipe(gulp.dest(`${devMode ? devDest : prodDest}/libs`))
 });

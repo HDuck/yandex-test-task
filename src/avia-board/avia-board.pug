@@ -1,10 +1,12 @@
 include avia-board__header
+include avia-board__cont
 include avia-board__row
 
-mixin avia-board(flightData)
+mixin avia-board(navObj, flightData)
     div(class="mt-3 container avia-board")
         +avia-board__header
-        if (flightData)
-            each dataItem in flightData
-                +avia-board__row(dataItem)
+        +avia-board__cont(navObj)
+            if (flightData)
+                each dataItem in flightData
+                    +avia-board__row(dataItem)
         

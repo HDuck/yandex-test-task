@@ -7749,7 +7749,7 @@ template {
 
 .avia-board__row {
   transition: background-color .3s ease 0s; }
-  .avia-board__row:nth-child(even) {
+  .avia-board__row:nth-child(odd) {
     background-color: #e9ecef; }
   .avia-board__row:hover {
     background-color: #007bff; }

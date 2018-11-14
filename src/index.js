@@ -63,7 +63,7 @@
 
     $.ajax({
         method: 'GET',
-        url: flightsApi,
+        url: 'https://api.flightstats.com/',
         dataType: 'jsonp',
         jsonpCallback: 'callback',
         success: (res) => {
@@ -77,11 +77,11 @@
     })
     .done(() => {
         let flights = getData(flightData, direction);
-        renderTable(flights)
+        renderTable(flights, direction);
     })
     .fail(() => {
         let flights = getData(flightData, direction);
-        renderTable(flights);
+        renderTable(flights, direction);
     });
 
     // Создание массива с необходимыми данными
@@ -187,8 +187,14 @@
 
     // Отрисовка таблицы с данными рейсов
 
-    function renderTable(dataArr) {
-        let table = document.querySelector(`.${TABLE_CLASS}`);
+    function renderTable(dataArr, direction) {
+        let selector = direction === 'arr'
+            ? `.${TABLE_CLASS} #arrival`
+            : direction === 'dep'
+                ? `.${TABLE_CLASS} #departure`
+                : `.${TABLE_CLASS} #delayed`;
+
+        let tableCont = document.querySelector(selector);
 
         dataArr.forEach((item) => {
             let row = new TableRow(
@@ -200,7 +206,7 @@
                 item.status
             );
             
-            table.appendChild(row.render());
+            tableCont.appendChild(row.render());
         });
     }
 

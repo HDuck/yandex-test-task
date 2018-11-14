@@ -1,5 +1,5 @@
-mixin avia-nav__link(name, active)
+mixin avia-nav__link(name, link, active)
     if (active)
-        a(class="nav-link avia-nav__link active", href="#")= name
+        a(class="nav-link avia-nav__link active", id=`${link}-tab`, href=`#${link}`, data-toggle="pill" role="tab", aria-controls=link, aria-selected="true")= name
     else
-        a(class="nav-link avia-nav__link", href="#")= name
+        a(class="nav-link avia-nav__link", id=`${link}-tab`, href=`#${link}`, data-toggle="pill" role="tab", aria-controls=link, aria-selected="false")= name
