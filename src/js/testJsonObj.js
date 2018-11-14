@@ -57,7 +57,7 @@ var testJsonObj = `{
         {
             "flightId": "2",
             "carrierFsCode": "SU",
-            "flightNumber": "2471",
+            "flightNumber": "2472",
             "departureAirportFsCode": "BCN",
             "arrivalAirportFsCode": "CDG",
             "departureDate": {
@@ -89,7 +89,7 @@ var testJsonObj = `{
         {
             "flightId": "3",
             "carrierFsCode": "SU",
-            "flightNumber": "2471",
+            "flightNumber": "2473",
             "departureAirportFsCode": "CDG",
             "arrivalAirportFsCode": "CDG",
             "departureDate": {
@@ -120,11 +120,11 @@ var testJsonObj = `{
             "codeshares": [
                 {
                     "fsCode": "AF",
-                    "flightNumber": "4898"
+                    "flightNumber": "4899"
                 },
                 {
                     "fsCode": "UE",
-                    "flightNumber": "4750"
+                    "flightNumber": "4751"
                 }
             ]
         }

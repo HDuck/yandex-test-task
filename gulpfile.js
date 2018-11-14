@@ -14,8 +14,8 @@ const devMode = argv.env !== 'production';
 const srcDest = './src';
 const devDest = './dist';
 const prodDest = './docs';
-const devBuild = ['pug', 'scss', 'concat:js', 'jsLibs'];
-const prodBuild = ['pug', 'scss', 'minify-css', 'concat:js', 'jsLibs', 'minify-js'];
+const devBuild = ['pug', 'scss', 'concat:js', 'libs'];
+const prodBuild = ['pug', 'minify-css', 'minify-js', 'libs' ];
 
 gulp.task('serverSync', ['build'], () => {
     browSync.init({
@@ -24,9 +24,9 @@ gulp.task('serverSync', ['build'], () => {
         }
     });
 
-    gulp.watch([`${srcDest}/**/*.scss`], ['scss']);
-    gulp.watch([`${srcDest}/**/*.pug`], ['pug']);
-    gulp.watch([`${srcDest}/**/*.js`, `${srcDest}/**/*/*.js`], ['concat:js']);
+    gulp.watch([`${srcDest}/**/*/*.scss`], ['scss']);
+    gulp.watch([`${srcDest}/**/*/*.pug`], ['pug']);
+    gulp.watch([`${srcDest}/*.js`, `${srcDest}/**/*/*.js`], ['concat:js']);
 });
 
 gulp.task('scss', ['cleanCss'], () => {
@@ -34,7 +34,7 @@ gulp.task('scss', ['cleanCss'], () => {
         .pipe(scss().on('error', scss.logError))
         .pipe(autoprefixer())
         .pipe(rename({ basename: 'styles' }))
-        .pipe(gulp.dest(`${devMode ? devDest : srcDest}/css`))
+        .pipe(gulp.dest(`${devMode ? devDest : prodDest}/css`))
         .pipe(browSync.stream());
 });
 
@@ -48,7 +48,7 @@ gulp.task('pug', ['cleanHtml'], () => {
         .pipe(browSync.stream());
 });
 
-gulp.task('jsLibs', () => {
+gulp.task('libs', () => {
     gulp.src([
         `./node_modules/jquery/dist/jquery.min.js`,
         `./node_modules/popper.js/dist/popper.min.js`,
@@ -60,17 +60,18 @@ gulp.task('jsLibs', () => {
 gulp.task('concat:js', ['cleanJs'], () => {
     gulp.src([
             `${srcDest}/index.js`,
-            `${srcDest}/*/*.js`
+            `${srcDest}/blocks/*/*.js`,
+            `${srcDest}/js/*.js`
         ])
         .pipe(concat('scripts.js'))
-        .pipe(gulp.dest(`${devMode ? devDest : srcDest}/js`))
+        .pipe(gulp.dest(`${devMode ? devDest : prodDest}/js`))
         .pipe(browSync.stream());
 });
 
 gulp.task('watch', () => {
     gulp.watch([
-            `${srcDest}/**/*.pug`,
-            `${srcDest}/**/*.scss`],
+            `${srcDest}/blocks/**/*.pug`,
+            `${srcDest}/blocks/**/*.scss`],
         ['pug', 'scss']);
 });
 
@@ -89,14 +90,14 @@ gulp.task('cleanJs', () => {
         .pipe(clean());
 });
 
-gulp.task('minify-css', () => {
+gulp.task('minify-css', ['scss'], () => {
     gulp.src(`${prodDest}/css/styles.css`)
         .pipe(cssMinify())
         .pipe(rename({ suffix: '.min' }))
         .pipe(gulp.dest(`${prodDest}/css`))
 });
 
-gulp.task('minify-js', () => {
+gulp.task('minify-js', ['concat:js'], () => {
     gulp.src(`${prodDest}/js/scripts.js`)
         .pipe(uglifyJs())
         .pipe(rename({ suffix: '.min' }))

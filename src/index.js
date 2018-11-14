@@ -369,7 +369,7 @@
         let tableCont = document.querySelector(selector);
 
         if (direction) {
-            dataArr.forEach((item) => {
+            dataArr.forEach((item, idx) => {
                 let row = new TableRow(
                     item.date,
                     item.city,
@@ -381,12 +381,15 @@
                     item.delayedDate,
                     item.delay
                 );
-                
-                tableCont.appendChild(row.render());
+                 
+                let renderedRow = row.render();
+                renderedRow.setAttribute('data-id', idx);
+
+                tableCont.appendChild(renderedRow);
             });
         
         } else {
-            dataArr.forEach((item) => {
+            dataArr.forEach((item, idx) => {
                 let row = new TableRow(
                     item.date,
                     item.city,
@@ -400,7 +403,10 @@
                     item.direction
                 );
                 
-                tableCont.appendChild(row.render());
+                let renderedRow = row.render();
+                renderedRow.setAttribute('data-id', idx);
+                
+                tableCont.appendChild(renderedRow);
             });
         }
 
