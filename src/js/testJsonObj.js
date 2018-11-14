@@ -17,7 +17,7 @@ var testJsonObj = `{
             "carrierFsCode": "SU",
             "flightNumber": "2471",
             "departureAirportFsCode": "BCN",
-            "arrivalAirportFsCode": "VSO",
+            "arrivalAirportFsCode": "BCN",
             "departureDate": {
                 "dateLocal": "2018-11-13T13:05:00.000"
             },
@@ -59,7 +59,7 @@ var testJsonObj = `{
             "carrierFsCode": "SU",
             "flightNumber": "2471",
             "departureAirportFsCode": "BCN",
-            "arrivalAirportFsCode": "VSO",
+            "arrivalAirportFsCode": "CDG",
             "departureDate": {
                 "dateLocal": "2018-11-13T13:05:00.000"
             },
@@ -78,7 +78,7 @@ var testJsonObj = `{
                     "dateLocal": "2018-11-13T19:05:00.000"
                 },
                 "estimatedGateArrival": {
-                    "dateLocal": "2018-11-13T18:52:00.000"
+                    "dateLocal": "2018-11-13T19:52:00.000"
                 }
             },
             "airportResources": {
@@ -91,7 +91,7 @@ var testJsonObj = `{
             "carrierFsCode": "SU",
             "flightNumber": "2471",
             "departureAirportFsCode": "CDG",
-            "arrivalAirportFsCode": "VSO",
+            "arrivalAirportFsCode": "CDG",
             "departureDate": {
                 "dateLocal": "2018-11-13T13:05:00.000"
             },
@@ -104,7 +104,7 @@ var testJsonObj = `{
                     "dateLocal": "2018-11-13T13:05:00.000"
                 },
                 "estimatedGateDeparture": {
-                    "dateLocal": "2018-11-13T12:46:00.000"
+                    "dateLocal": "2018-11-13T13:46:00.000"
                 },
                 "scheduledGateArrival": {
                     "dateLocal": "2018-11-13T19:05:00.000"
