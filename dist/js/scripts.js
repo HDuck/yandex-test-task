@@ -73,7 +73,7 @@
 
     $.ajax({
         method: 'GET',
-        url: flightsDummyUrl,
+        url: flightsApi,
         dataType: 'jsonp',
         jsonpCallback: 'callback'
     })
@@ -91,7 +91,7 @@
 
             return $.ajax({
                 method: 'GET',
-                url: flightsDummyUrl,
+                url: flightsApi,
                 dataType: 'jsonp',
                 jsonpCallback: 'callback'
             })
@@ -134,7 +134,7 @@
 
             return $.ajax({
                 method: 'GET',
-                url: flightsDummyUrl,
+                url: flightsApi,
                 dataType: 'jsonp',
                 jsonpCallback: 'callback'
             })
@@ -369,7 +369,7 @@
         let tableCont = document.querySelector(selector);
 
         if (direction) {
-            dataArr.forEach((item) => {
+            dataArr.forEach((item, idx) => {
                 let row = new TableRow(
                     item.date,
                     item.city,
@@ -381,12 +381,15 @@
                     item.delayedDate,
                     item.delay
                 );
-                
-                tableCont.appendChild(row.render());
+                 
+                let renderedRow = row.render();
+                renderedRow.setAttribute('data-id', idx);
+
+                tableCont.appendChild(renderedRow);
             });
         
         } else {
-            dataArr.forEach((item) => {
+            dataArr.forEach((item, idx) => {
                 let row = new TableRow(
                     item.date,
                     item.city,
@@ -400,7 +403,10 @@
                     item.direction
                 );
                 
-                tableCont.appendChild(row.render());
+                let renderedRow = row.render();
+                renderedRow.setAttribute('data-id', idx);
+                
+                tableCont.appendChild(renderedRow);
             });
         }
 
@@ -419,6 +425,76 @@
         return `${year}/${month}/${day}/${hour}`;
     }
 })();
+(function searchByFlightCode() {
+    const INP_CLASS = '.search-bar__inp';
+    const FORM_CLASS = '.search-bar';
+
+    let inp = document.querySelector(INP_CLASS);
+    let form = document.querySelector(FORM_CLASS);
+
+    
+    form.addEventListener('submit', function(evt) {
+        evt.preventDefault();
+    });
+
+    // Повесить обработчик после ajax запросов
+
+    setTimeout(function() {
+        form.addEventListener('submit', function() {
+            let inpVal = inp.value;
+            let currTab = document.querySelector('.tab-pane.fade.active.show');
+            let currTabRows = Array.from(currTab.children);
+            let matchIdxs = searchMatches(currTabRows, inpVal);
+
+            showMatched(currTabRows, matchIdxs);
+            inp.value = '';
+        })
+    }, 4000);
+
+    function showMatched(rows, matches) {
+        $(rows).hide();
+
+        rows.forEach((row, rowIdx) => {
+
+            matches.some((matchId) => {
+
+                if (rowIdx === matchId) {
+
+                    $(row).attr('data-id', rowIdx).fadeIn();
+                }
+            })
+            
+        })
+    }
+
+    function searchMatches(rows, searchVal) {
+        let searchIdxs = [];
+
+        rows.forEach((elem, idx) => {
+            let codes = elem.querySelectorAll('.num');
+            let codesArr = Array.from(codes);
+
+            codesArr.forEach((code) => {
+                
+                if (checkCode(code.textContent, searchVal)) {
+                    searchIdxs.push(idx);
+                }
+            });
+        });
+
+        return searchIdxs;
+    }
+
+    function checkCode(code, sCode) {
+        let regExp = new RegExp(sCode, 'i') ;
+        let result = code.match(regExp);
+
+        return result
+            ? true
+            : false;
+    }
+    
+})()
 var testJsonObj = `{
     "appendix": {
         "airports": [
@@ -478,7 +554,7 @@ var testJsonObj = `{
         {
             "flightId": "2",
             "carrierFsCode": "SU",
-            "flightNumber": "2471",
+            "flightNumber": "2472",
             "departureAirportFsCode": "BCN",
             "arrivalAirportFsCode": "CDG",
             "departureDate": {
@@ -510,7 +586,7 @@ var testJsonObj = `{
         {
             "flightId": "3",
             "carrierFsCode": "SU",
-            "flightNumber": "2471",
+            "flightNumber": "2473",
             "departureAirportFsCode": "CDG",
             "arrivalAirportFsCode": "CDG",
             "departureDate": {
@@ -541,11 +617,11 @@ var testJsonObj = `{
             "codeshares": [
                 {
                     "fsCode": "AF",
-                    "flightNumber": "4898"
+                    "flightNumber": "4899"
                 },
                 {
                     "fsCode": "UE",
-                    "flightNumber": "4750"
+                    "flightNumber": "4751"
                 }
             ]
         }

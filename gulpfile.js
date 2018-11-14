@@ -8,7 +8,7 @@ const gulp = require('gulp'),
       rename = require('gulp-rename'),
       browSync = require('browser-sync'),
       argv = require('minimist')(process.argv.slice(2)),
-      uglifyJs = require('gulp-uglify');
+      uglifyJs = require('gulp-uglify-es').default;
 
 const devMode = argv.env !== 'production';
 const srcDest = './src';
