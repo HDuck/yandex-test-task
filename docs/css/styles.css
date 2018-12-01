@@ -7747,6 +7747,14 @@ template {
 [hidden] {
   display: none !important; }
 
+.wrapper {
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column; }
+
+.content {
+  flex: 1; }
+
 .avia-board__row {
   transition: background-color .3s ease 0s; }
   .avia-board__row:nth-child(odd) {

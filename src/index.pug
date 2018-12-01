@@ -5,6 +5,7 @@ include blocks/title/title
 include blocks/avia-nav/avia-nav
 include blocks/search-bar/search-bar
 include blocks/avia-board/avia-board
+include blocks/footer/footer
 
 -
     var navTabs = {
@@ -30,4 +31,5 @@ html(lang="ru")
                     +search-bar
             +content
                 +avia-board(navTabs)
+            +footer
         script(src=`./js/scripts${devMode ? '' : '.min'}.js`) 
